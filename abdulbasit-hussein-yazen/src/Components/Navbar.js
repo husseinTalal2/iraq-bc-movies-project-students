@@ -1,53 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import SearchBox from "./SearchBox";
+import { Navbar, Nav, Spinner } from "react-bootstrap";
+function NavB(props) {
+    const [spinner, setSpinner] = useState("d-none");
+    
+    const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+    const handleChange = (e) => {
+        if (e.target.value) {
+            setSpinner("d-block");
+        } else {
+            setSpinner("d-none");
+        }
 
-function Navbar() {
+        const constructUrl = (path, query) => {
+            return `${TMDB_BASE_URL}/${path}?api_key=${atob(
+                "ZDJmYTdhZDFlMjZhZjA4NDdkMzQ5ZDdkYmQ1ZjkzZTU="
+            )}&query=${query}`;
+        };
+
+        fetch(constructUrl("search/movie", e.target.value))
+        .then(response => response.json())
+        .then(response => props.get(response.results))
+        
+    };
     return (
-        <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a className="navbar-brand" href="#">
-                    movies
-                </a>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div
-                    className="collapse navbar-collapse"
-                    id="navbarSupportedContent"
-                >
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#">
-                                Home <span className="sr-only">(current)</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <form className="form-inline my-2 my-lg-0">
-                        <input
-                            className="form-control mr-sm-2"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
-                        <button
-                            className="btn btn-outline-success my-2 my-sm-0"
-                            type="submit"
-                        >
-                            Search
-                        </button>
-                    </form>
-                </div>
-            </nav>
-        </>
+        <Navbar bg="light" expand="lg">
+            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                    <Nav.Link href="#home">Home</Nav.Link>
+                </Nav>
+                <SearchBox handle={handleChange} spin={spinner} />
+            </Navbar.Collapse>
+        </Navbar>
     );
 }
 
-export default Navbar;
+export default NavB;

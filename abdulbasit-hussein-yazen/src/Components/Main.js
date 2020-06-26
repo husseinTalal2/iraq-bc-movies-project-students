@@ -1,9 +1,10 @@
 import React from "react";
-
-function Main() {
+import MovieGrid from "./MovieGrid";
+function Main(props) {
     return (
         <main>
             <h1>hello from Main</h1>
+            <MovieGrid moviesList={props.movsArray}/>
         </main>
     );
 }
