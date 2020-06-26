@@ -2,7 +2,7 @@ import React from "react";
 
 function footer() {
     return (
-        <footer className="d-flex justify-content-center bg-dark p-5 text-white fixed-bottom">
+        <footer className="d-flex justify-content-center bg-dark p-5 text-white ">
             <p>
                 The website made with love by
                 <a href="https://github.com/abdulbasit-web">

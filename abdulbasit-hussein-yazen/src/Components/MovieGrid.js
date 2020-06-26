@@ -8,7 +8,7 @@ function MovieGrid(props) {
                 {props.moviesList.map((movie) => {
                     return (
                         <Col xs={12} md={4}>
-                            <MovieItem mov={movie}/>
+                            <MovieItem key={movie.id} mov={movie}/>
                         </Col>
                     );
                 })}
