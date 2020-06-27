@@ -8,8 +8,9 @@ function footer() {
                 <a href="https://github.com/abdulbasit-web">
                     {" "}
                     Abdulbasit
-                </a>, <a href="https://github.com/husseinTalal2"> Hussein </a>
-                and <a href="https://github.com/ZeenaKareemAlhello"> zeena </a>
+                </a>, <a href="https://github.com/husseinTalal2"> Hussein </a>,{" "}
+                <a href="https://github.com/ZeenaKareemAlhello"> Zeena </a>
+                and <a href="https://github.com/yazenfiras"> Yezen </a>
             </p>
         </footer>
     );

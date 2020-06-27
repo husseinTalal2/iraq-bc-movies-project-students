@@ -3,10 +3,8 @@ import MovieGrid from "./MovieGrid";
 function Main(props) {
     return (
         <main>
-            <h1>hello from Main</h1>
-            <MovieGrid moviesList={props.movsArray}/>
+            <MovieGrid  movies={props.movies}/>
         </main>
     );
 }
-
 export default Main;

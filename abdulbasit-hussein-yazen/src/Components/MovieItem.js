@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Button, Badge, Col, Row } from "react-bootstrap";
 function MovieItem(props) {
     return (
-        <Card style={{ width: "18rem" }}>
+        <Card className="shadow my-3 card-shadow" >
             <Card.Img
                 variant="top"
                 src={"https://image.tmdb.org/t/p/w300" + props.mov.poster_path}
