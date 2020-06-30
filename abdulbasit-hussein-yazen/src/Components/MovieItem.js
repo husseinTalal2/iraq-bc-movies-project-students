@@ -2,7 +2,13 @@ import React from "react";
 import { Card, Button, Badge, Col, Row } from "react-bootstrap";
 function MovieItem(props) {
     return (
-        <Card className="shadow my-3 card-shadow" >
+        <Card
+            className="shadow my-3 card-shadow"
+            onClick={() => {
+                props.isClicked(true);
+                props.setSelectedMovie(props.mov);
+            }}
+        >
             <Card.Img
                 variant="top"
                 src={"https://image.tmdb.org/t/p/w300" + props.mov.poster_path}
