@@ -3,6 +3,7 @@ import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import "./App.css";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 
 
@@ -20,11 +21,13 @@ function App() {
     })
 
     return (
+      <Router>
         <>
             <Navbar setMovies ={setMovies}/>
             <Main movies={movies.length === 0 ? trending:movies}/>
             <Footer />
         </>
+        </Router>
     );
 }
 

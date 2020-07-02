@@ -1,34 +1,24 @@
 import React, { useState } from "react";
 import SearchBox from "./SearchBox";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import GenresDropdown from "./GenresDropdown"
+import GenresDropdown from "./GenresDropdown";
+import { GiFlame } from "react-icons/gi";
+import { Link } from "react-router-dom";
 function NavB(props) {
-    
-    const [genres, setGenres] = useState([]);
-    
-    
-    // const handleChange = (e) => {
-    //     if (e.target.value) {
-    //         setSpinner("d-block");
-    //         fetch(constructUrl("search/movie", e.target.value))
-    //             .then((response) => response.json())
-    //             .then((response) => props.get(response.results));
-    //     } else {
-    //         setSpinner("d-none");
-    //     }
-    // };
-    
-  
     return (
         <Navbar bg="dark" className="text-white" expand="lg" variant="dark">
-            <Navbar.Brand href="#home">! Netflix</Navbar.Brand>
+            <a href="/">
+                <Navbar.Brand>
+                    <GiFlame /> NetFlame
+                </Navbar.Brand>
+            </a>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <GenresDropdown setMovies={props.setMovies}/>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <GenresDropdown setMovies={props.setMovies} />
                 </Nav>
-                <SearchBox setMovies={props.setMovies}  />
+                <SearchBox setMovies={props.setMovies} />
             </Navbar.Collapse>
         </Navbar>
     );

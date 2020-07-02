@@ -36,7 +36,7 @@ function GenresDropdown(props) {
                 as="select"
                 onChange={handleClick}
             >
-                <option disabled selected>
+                <option disabled defaultValue>
                     Choose Genre
                 </option>
                 {genres.map((genre) => {

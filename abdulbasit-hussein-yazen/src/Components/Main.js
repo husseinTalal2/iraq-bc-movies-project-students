@@ -1,23 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useParams } from "react";
 import MovieGrid from "./MovieGrid";
 import MoviePage from "./MoviePage";
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function Main(props) {
-    const [isMovieClicked, setIsMovieClicked] = useState(false);
-    const [selectedMovie, setSelectedMovie] = useState({})
-    console.log(isMovieClicked);
+    
+    const [selectedMovie, setSelectedMovie] = useState(0);
+    
     return (
         <main>
             
-            {isMovieClicked ? (
-                <MoviePage setIsMovieClicked={setIsMovieClicked} selectedMovie={selectedMovie}/>
-            ) : (
-                <MovieGrid
-                    isClicked={setIsMovieClicked}
-                    movies={props.movies}
-                    setSelectedMovie={setSelectedMovie}
-                />
-            )}
+                <Switch>
+                    
+                    <Route
+                        path="/"
+                        exact
+                        render={() => (
+                            <MovieGrid
+                                
+                                movies={props.movies}
+                                setSelectedMovie={setSelectedMovie}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        path={`/movie/${selectedMovie.title}`}
+                        render={() => (
+                            <MoviePage
+                                                           
+                                selectedMovie={selectedMovie}
+                            />
+                        )}
+                    />
+                    <Route path={`/people/`}/>
+                </Switch>
+        
         </main>
     );
 }
