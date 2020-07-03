@@ -3,12 +3,16 @@
     margin-top: 5px;
 }
 html body {
-  background-color: #F8F9FA ;
+    background-color: #f8f9fa;
 }
-.card-shadow{
-  transition: all .3s ease-in-out;
+.card-shadow {
+    transition: all 0.3s ease-in-out;
+}
+.card-shadow:hover {
+    transform: scale(1.05, 1.05);
+}
 
+.nav-item {
+    color: white;
+    padding-top: 6px;
 }
- .card-shadow:hover {
-  transform: scale(1.05, 1.05);
-} 

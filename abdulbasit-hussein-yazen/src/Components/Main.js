@@ -1,40 +1,43 @@
-import React, { useState, useParams } from "react";
+import React, { useState, useParams, useContext, useEffect } from "react";
 import MovieGrid from "./MovieGrid";
 import MoviePage from "./MoviePage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ActorInfo from "./ActorInfo";
+import Search from "./Search";
+import { MovieContext } from "./MovieContext";
 function Main(props) {
-    
+    const [, setMovies] = useContext(MovieContext);
     const [selectedMovie, setSelectedMovie] = useState(0);
-    
+    useEffect(() => {
+        fetch(
+            "https://api.themoviedb.org/3/trending/movie/day?api_key=754ad3989128c7d8cfcc82e6591e7f2e"
+        )
+            .then((response) => response.json())
+            .then((data) => {
+                setMovies(data.results);
+            });
+    }, []);
     return (
         <main>
-            
-                <Switch>
-                    
-                    <Route
-                        path="/"
-                        exact
-                        render={() => (
-                            <MovieGrid
-                                
-                                movies={props.movies}
-                                setSelectedMovie={setSelectedMovie}
-                            />
-                        )}
-                    />
+            <Switch>
+                <Route
+                    path="/"
+                    exact
+                    component={() => (
+                        <MovieGrid setSelectedMovie={setSelectedMovie} />
+                    )}
+                />
 
-                    <Route
-                        path={`/movie/${selectedMovie.title}`}
-                        render={() => (
-                            <MoviePage
-                                                           
-                                selectedMovie={selectedMovie}
-                            />
-                        )}
-                    />
-                    <Route path={`/people/`}/>
-                </Switch>
-        
+                <Route
+                    path={`/movie`}
+                    render={() => <MoviePage selectedMovie={selectedMovie} />}
+                />
+                <Route
+                    path={`/people/:id/:test`}
+                    render={(props) => <ActorInfo {...props} />}
+                />
+                <Route path={`/search`} component={Search}/>
+            </Switch>
         </main>
     );
 }

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavDropdown, Form } from "react-bootstrap";
+import {MovieContext} from "./MovieContext";
 function GenresDropdown(props) {
-    const [genreId, setGenreId] = useState();
+    const [, setMovies] = useContext(MovieContext);
     const [genres, setGenres] = useState([]);
     const [popular, setPopular] = useState([]);
     const TMDB_BASE_URL = "https://api.themoviedb.org/3";
@@ -19,40 +20,36 @@ function GenresDropdown(props) {
             .then((response) => response.json())
             .then((data) => setPopular(data.results));
     }, []);
-    function handleClick(e) {
-        setGenreId(e.target.value);
-        console.log(e.target.value);
-        props.setMovies(
-            popular.filter((movie) =>
-                movie.genre_ids.includes(parseInt(genreId))
-            )
-        );
-    }
-    return (
-        <Form>
-            <Form.Control
-                className="form-control-sm genres"
-                placeholder="Genres"
-                as="select"
-                onChange={handleClick}
-            >
-                <option disabled defaultValue>
-                    Choose Genre
-                </option>
-                {genres.map((genre) => {
-                    return (
-                        <option
-                            //onClick={handleClick}
-                            value={genre.id}
-                            key={genre.id}
-                        >
-                            {genre.name}
-                        </option>
-                    );
-                })}
-            </Form.Control>
-        </Form>
-    );
-}
+        function handleChange(e) {
 
-export default GenresDropdown;
+        const selectGenre = genres.find(ele => ele.name === e.target.value)
+        e.target[0].disabled = true
+
+        setMovies(
+            popular.filter(movie => {
+            return movie.genre_ids.includes(selectGenre.id)
+          })
+        )
+      }
+    
+      return (
+        <div>
+          <Form>
+            <Form.Control className="ml-4" as='select' onChange={handleChange}>
+              <option disabled={false} value='hola'>
+                Choose Genre
+              </option>
+              {genres.map(genre => (
+                <option key={genre.id} id={genre.id}>
+                  {genre.name}
+                </option>
+              ))}
+            </Form.Control>
+          </Form>
+        </div>
+      )
+    }
+    
+    export default GenresDropdown
+    
+    

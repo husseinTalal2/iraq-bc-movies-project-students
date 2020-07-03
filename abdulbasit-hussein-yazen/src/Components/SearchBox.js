@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Form, FormControl, Button, Spinner } from "react-bootstrap";
+import { useLocation, Link } from "react-router-dom";
+import { MovieContext } from "./MovieContext";
+
 function SearchBox(props) {
+    const [, setMovies] = useContext(MovieContext);
     const [searchText, setSearchText] = useState("");
     const [query, setQuery] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +21,7 @@ function SearchBox(props) {
         fetch(constructUrl("search/movie", searchText))
             .then((response) => response.json())
             .then((data) => {
-                props.setMovies(data.results);
+                setMovies(data.results);
                 setIsLoading(true);
                 setTimeout(() => {
                     setIsLoading(false);
@@ -41,9 +45,11 @@ function SearchBox(props) {
                     variant="success"
                 />
             ) : (
-                <Button type="submit" variant="outline-success">
-                    Search
-                </Button>
+                <Link to={`/search?q=${searchText}`}>
+                    <Button type="submit" variant="outline-success">
+                        Search
+                    </Button>
+                </Link>
             )}
         </Form>
     );

@@ -3,8 +3,11 @@ import SearchBox from "./SearchBox";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import GenresDropdown from "./GenresDropdown";
 import { GiFlame } from "react-icons/gi";
-import { Link } from "react-router-dom";
-function NavB(props) {
+import { Link, useLocation } from "react-router-dom";
+function NavB() {
+    const location = useLocation();
+    console.log(location);
+
     return (
         <Navbar bg="dark" className="text-white" expand="lg" variant="dark">
             <a href="/">
@@ -15,10 +18,16 @@ function NavB(props) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <GenresDropdown setMovies={props.setMovies} />
+                    <Link to="/">
+                        <Nav.Item>Home</Nav.Item>
+                    </Link>
+                    <GenresDropdown/>
                 </Nav>
-                <SearchBox setMovies={props.setMovies} />
+                {location.pathname === "/" ? (
+                    <SearchBox />
+                ) : (
+                    ""
+                )}
             </Navbar.Collapse>
         </Navbar>
     );

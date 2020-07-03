@@ -3,7 +3,7 @@ import { Card, Button, Badge, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 function MovieItem(props) {
     return (
-        <Link to={`/movie/${props.mov.title}`}>
+        <Link to={`/movie/q=${props.mov.title}`}>
             <Card
                 className="shadow my-3 card-shadow"
                 onClick={() => {
