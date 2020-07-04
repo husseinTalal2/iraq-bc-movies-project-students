@@ -33,7 +33,7 @@ function Main() {
                     render={() => <MoviePage />}
                 />
                 <Route
-                    path={`/people/:id/:test`}
+                    path={`/people/:id`}
                     render={(props) => <ActorInfo {...props} />}
                 />
                 <Route path={`/search`} component={Search}/>
