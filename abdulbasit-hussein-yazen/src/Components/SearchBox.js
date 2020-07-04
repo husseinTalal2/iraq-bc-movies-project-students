@@ -8,27 +8,15 @@ function SearchBox(props) {
     const [searchText, setSearchText] = useState("");
     const [query, setQuery] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-        setQuery(searchText);
-        const constructUrl = (path, query) => {
-            return `${TMDB_BASE_URL}/${path}?api_key=${atob(
-                "ZDJmYTdhZDFlMjZhZjA4NDdkMzQ5ZDdkYmQ1ZjkzZTU="
-            )}&query=${query}`;
-        };
 
-        fetch(constructUrl("search/movie", searchText))
-            .then((response) => response.json())
-            .then((data) => {
-                setMovies(data.results);
-                setIsLoading(true);
-                setTimeout(() => {
-                    setIsLoading(false);
-                }, 500);
-            });
-    };
-
+        setIsLoading(true);
+        setTimeout(() =>setIsLoading(false));
+    }
+    const location = useLocation();
+    console.log(location);
     return (
         <Form inline onSubmit={handleSubmit}>
             <FormControl

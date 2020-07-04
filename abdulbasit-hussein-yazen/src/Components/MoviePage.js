@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container, Button, Badge, Row, Col } from "react-bootstrap";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import MovieInfo from "./MovieInfo";
 import Carousel, { Dots } from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
-function MoviePage(props) {
+function MoviePage() {
     const location = useLocation();
-    console.log(location);
+
     const [movie, setMovie] = useState({});
     const [video, setVideo] = useState({});
     const [cast, setCast] = useState([]);
@@ -14,20 +14,27 @@ function MoviePage(props) {
     const handleBack = () => {
         history.goBack();
     };
+    const { id } = useParams();
 
     useEffect(() => {
         fetch(
-            `https://api.themoviedb.org/3/movie/${props.selectedMovie.id}?api_key=754ad3989128c7d8cfcc82e6591e7f2e`
+            `https://api.themoviedb.org/3/movie/${
+                id.split("-")[0]
+            }?api_key=754ad3989128c7d8cfcc82e6591e7f2e`
         )
             .then((response) => response.json())
             .then((data) => setMovie(data));
         fetch(
-            `https://api.themoviedb.org/3/movie/${props.selectedMovie.id}/videos?api_key=754ad3989128c7d8cfcc82e6591e7f2e`
+            `https://api.themoviedb.org/3/movie/${
+                id.split("-")[0]
+            }/videos?api_key=754ad3989128c7d8cfcc82e6591e7f2e`
         )
             .then((response) => response.json())
             .then((data) => setVideo(data));
         fetch(
-            `https://api.themoviedb.org/3/movie/${props.selectedMovie.id}/credits?api_key=754ad3989128c7d8cfcc82e6591e7f2e`
+            `https://api.themoviedb.org/3/movie/${
+                id.split("-")[0]
+            }/credits?api_key=754ad3989128c7d8cfcc82e6591e7f2e`
         )
             .then((response) => response.json())
             .then((data) => {
@@ -59,7 +66,9 @@ function MoviePage(props) {
                 {cast !== undefined
                     ? cast.map((actor) => {
                           return (
-                              <Link to={`/people/${actor.id}-${actor.name}/this-is-test `}>
+                              <Link
+                                  to={`/people/${actor.id}-${actor.name}/this-is-test `}
+                              >
                                   <div className="m-2 ">
                                       <img
                                           className="img-fluid rounded "

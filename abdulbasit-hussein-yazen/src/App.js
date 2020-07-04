@@ -12,7 +12,7 @@ function App() {
             <Router>
                 <>
                     <Navbar />
-                    <Main  />
+                    <Main />
                     <Footer />
                 </>
             </Router>

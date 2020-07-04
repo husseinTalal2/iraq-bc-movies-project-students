@@ -3,13 +3,13 @@ import { Card, Button, Badge, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 function MovieItem(props) {
     return (
-        <Link to={`/movie/q=${props.mov.title}`}>
+        <Link to={`/movie/${props.mov.id}-${props.mov.title}`}>
             <Card
                 className="shadow my-3 card-shadow"
-                onClick={() => {
+                // onClick={() => {
                     
-                    props.setSelectedMovie(props.mov);
-                }}
+                //     props.setSelectedMovie(props.mov);
+                // }}
             >
                 <Card.Img
                     variant="top"

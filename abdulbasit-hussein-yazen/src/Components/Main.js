@@ -1,13 +1,13 @@
-import React, { useState, useParams, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import MovieGrid from "./MovieGrid";
 import MoviePage from "./MoviePage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ActorInfo from "./ActorInfo";
 import Search from "./Search";
 import { MovieContext } from "./MovieContext";
-function Main(props) {
+function Main() {
     const [, setMovies] = useContext(MovieContext);
-    const [selectedMovie, setSelectedMovie] = useState(0);
+  
     useEffect(() => {
         fetch(
             "https://api.themoviedb.org/3/trending/movie/day?api_key=754ad3989128c7d8cfcc82e6591e7f2e"
@@ -24,13 +24,13 @@ function Main(props) {
                     path="/"
                     exact
                     component={() => (
-                        <MovieGrid setSelectedMovie={setSelectedMovie} />
+                        <MovieGrid />
                     )}
                 />
 
                 <Route
-                    path={`/movie`}
-                    render={() => <MoviePage selectedMovie={selectedMovie} />}
+                    path={`/movie/:id`}
+                    render={() => <MoviePage />}
                 />
                 <Route
                     path={`/people/:id/:test`}

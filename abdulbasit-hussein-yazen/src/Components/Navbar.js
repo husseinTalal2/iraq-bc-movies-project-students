@@ -6,8 +6,6 @@ import { GiFlame } from "react-icons/gi";
 import { Link, useLocation } from "react-router-dom";
 function NavB() {
     const location = useLocation();
-    console.log(location);
-
     return (
         <Navbar bg="dark" className="text-white" expand="lg" variant="dark">
             <a href="/">
