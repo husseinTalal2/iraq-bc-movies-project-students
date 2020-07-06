@@ -6,7 +6,7 @@ import ActorInfo from "./ActorInfo";
 import Search from "./Search";
 import { MovieContext } from "./MovieContext";
 function Main() {
-    const [, setMovies] = useContext(MovieContext);
+    const [, dispatch] = useContext(MovieContext);
   
     useEffect(() => {
         fetch(
@@ -14,7 +14,7 @@ function Main() {
         )
             .then((response) => response.json())
             .then((data) => {
-                setMovies(data.results);
+                dispatch({type:"SET_MOVIES" ,movies:data.results});
             });
     }, []);
     return (
