@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import Main from "./Components/Main";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import "./App.css";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import { MoiveProvider, MovieContext } from "./Components/MovieContext";
+import { BrowserRouter as Router} from "react-router-dom";
+import { MoiveProvider} from "./Components/MovieContext";
 
 function App() {
     return (

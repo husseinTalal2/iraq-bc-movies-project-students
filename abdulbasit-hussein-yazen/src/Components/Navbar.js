@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBox from "./SearchBox";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import GenresDropdown from "./GenresDropdown";
 import { GiFlame } from "react-icons/gi";
 import { Link, useLocation } from "react-router-dom";
