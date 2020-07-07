@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import { Form, FormControl, Button, Spinner } from "react-bootstrap";
 import { useLocation, Link } from "react-router-dom";
-import { MovieContext } from "./MovieContext";
+
 
 function SearchBox(props) {
     const [searchText, setSearchText] = useState("");

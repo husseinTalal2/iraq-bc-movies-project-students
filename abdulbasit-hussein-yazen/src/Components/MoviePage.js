@@ -28,7 +28,7 @@ function MoviePage() {
         API.fetching(`/movie/${id.split("-")[0]}/credits`).then((data) =>
             setCast(data.cast)
         );
-    }, []);
+    }, [id]);
 
     return (
         <Container>
@@ -39,6 +39,7 @@ function MoviePage() {
             <Row>
                 <Col xs={12} md={4}>
                     <img
+                        alt="movie poster"
                         className="img-fluid rounded"
                         src={
                             "https://image.tmdb.org/t/p/w300" +
@@ -59,6 +60,7 @@ function MoviePage() {
                               >
                                   <div className="m-2 ">
                                       <img
+                                          alt="actor"
                                           className="img-fluid rounded "
                                           src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}
                                       />

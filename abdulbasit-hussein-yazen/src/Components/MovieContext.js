@@ -1,4 +1,4 @@
-import React, { useState, createContext, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 
 export const MovieContext = createContext();
 const SET_MOVIES = "SET_MOVIES";

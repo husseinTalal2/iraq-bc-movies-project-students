@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, Badge, Col, Row } from "react-bootstrap";
+import { Card, Badge, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 function MovieItem(props) {
     return (

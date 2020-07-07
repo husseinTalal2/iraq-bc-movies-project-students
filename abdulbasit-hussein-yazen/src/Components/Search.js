@@ -11,7 +11,7 @@ function Search() {
         API.fetching("/search/movie", location.search.slice(3)).then((data) =>
             dispatch({ type: "SET_MOVIES", movies: data.results })
         );
-    }, []);
+    }, [location.search, dispatch]);
     return <MovieGrid />;
 }
 

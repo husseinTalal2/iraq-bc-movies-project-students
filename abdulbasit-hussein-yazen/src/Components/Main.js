@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import MovieGrid from "./MovieGrid";
 import MoviePage from "./MoviePage";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {Route, Switch } from "react-router-dom";
 import ActorInfo from "./ActorInfo";
 import Search from "./Search";
 import { MovieContext } from "./MovieContext";
@@ -13,7 +13,7 @@ function Main() {
         API.fetching("/trending/movie/day").then((data) =>
             dispatch({ type: "SET_MOVIES", movies: data.results })
         );
-    }, []);
+    }, [dispatch]);
     return (
         <main>
             <Switch>
