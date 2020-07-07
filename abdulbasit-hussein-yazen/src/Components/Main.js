@@ -5,38 +5,26 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ActorInfo from "./ActorInfo";
 import Search from "./Search";
 import { MovieContext } from "./MovieContext";
+import API from "../API";
 function Main() {
     const [, dispatch] = useContext(MovieContext);
-  
+
     useEffect(() => {
-        fetch(
-            "https://api.themoviedb.org/3/trending/movie/day?api_key=754ad3989128c7d8cfcc82e6591e7f2e"
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                dispatch({type:"SET_MOVIES" ,movies:data.results});
-            });
+        API.fetching("/trending/movie/day").then((data) =>
+            dispatch({ type: "SET_MOVIES", movies: data.results })
+        );
     }, []);
     return (
         <main>
             <Switch>
-                <Route
-                    path="/"
-                    exact
-                    component={() => (
-                        <MovieGrid />
-                    )}
-                />
+                <Route path="/" exact component={() => <MovieGrid />} />
 
-                <Route
-                    path={`/movie/:id`}
-                    render={() => <MoviePage />}
-                />
+                <Route path={`/movie/:id`} render={() => <MoviePage />} />
                 <Route
                     path={`/people/:id/:test`}
                     render={(props) => <ActorInfo {...props} />}
                 />
-                <Route path={`/search`} component={Search}/>
+                <Route path={`/search`} component={Search} />
             </Switch>
         </main>
     );

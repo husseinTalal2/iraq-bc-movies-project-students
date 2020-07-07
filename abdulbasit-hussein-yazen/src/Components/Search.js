@@ -1,23 +1,18 @@
-import React, {useState, useEffect, useContext}from 'react'
-import MovieGrid from "./MovieGrid"
-import  {useParams, useLocation} from "react-router-dom"
-import {MovieContext} from "./MovieContext"
+import React, {useEffect, useContext } from "react";
+import MovieGrid from "./MovieGrid";
+import { useLocation } from "react-router-dom";
+import { MovieContext } from "./MovieContext";
+import API from "../API";
 function Search() {
     const [, dispatch] = useContext(MovieContext);
-    
+
     const location = useLocation();
     useEffect(() => {
-      
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${atob(
-            "ZDJmYTdhZDFlMjZhZjA4NDdkMzQ5ZDdkYmQ1ZjkzZTU="
-        )}&query=${location.search.slice(3)}`)
-        .then(response => response.json())
-        .then(data => dispatch({type: "SET_MOVIES", movies: data.results}))
-        
-    }, [])
-    return (
-      <MovieGrid />
-    )
+        API.fetching("/search/movie", location.search.slice(3)).then((data) =>
+            dispatch({ type: "SET_MOVIES", movies: data.results })
+        );
+    }, []);
+    return <MovieGrid />;
 }
 
-export default Search
+export default Search;

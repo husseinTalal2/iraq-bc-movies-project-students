@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 function MovieItem(props) {
     return (
         <Link to={`/movie/${props.mov.id}-${props.mov.title}`}>
-            <Card
-                className="shadow my-3 card-shadow"
-                // onClick={() => {
-                    
-                //     props.setSelectedMovie(props.mov);
-                // }}
-            >
+            <Card className="shadow my-3 card-shadow">
                 <Card.Img
                     variant="top"
                     src={
@@ -23,7 +17,9 @@ function MovieItem(props) {
                     <Row className="justify-content-md-between">
                         <Col>
                             <Badge pill variant="primary">
-                                {props.mov.hasOwnProperty("release_date")?props.mov.release_date.substring(0, 4):"no release date"}
+                                {props.mov.hasOwnProperty("release_date")
+                                    ? props.mov.release_date.substring(0, 4)
+                                    : "no release date"}
                             </Badge>
                         </Col>
                         <Col>

@@ -4,17 +4,15 @@ import { useLocation, Link } from "react-router-dom";
 import { MovieContext } from "./MovieContext";
 
 function SearchBox(props) {
-    const [, setMovies] = useContext(MovieContext);
     const [searchText, setSearchText] = useState("");
-    const [query, setQuery] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
         setIsLoading(true);
-        setTimeout(() =>setIsLoading(false));
-    }
+        setTimeout(() => setIsLoading(false));
+    };
     const location = useLocation();
     console.log(location);
     return (

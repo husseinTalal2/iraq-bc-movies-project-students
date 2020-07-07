@@ -8,7 +8,7 @@ function MovieGrid() {
     let movies;
     if (state !== !!undefined) {
         movies =
-            state.selectedGenre == -1
+            state.selectedGenre === -1
                 ? state.movies
                 : state.movies.filter((movie) =>
                       movie.genre_ids.includes(state.selectedGenre)
